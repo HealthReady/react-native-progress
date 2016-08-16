@@ -6,6 +6,7 @@ import React, {
 import {
   Animated,
   Easing,
+  Text,
   View,
 } from 'react-native';
 
@@ -24,6 +25,8 @@ export default class ProgressBar extends Component {
     progress: PropTypes.number,
     unfilledColor: PropTypes.string,
     width: PropTypes.number,
+    innerBarTitle: PropTypes.string,
+    innerBarTitleStyle: View.propTypes.style,
   };
 
   static defaultProps = {
@@ -107,6 +110,8 @@ export default class ProgressBar extends Component {
 
     const innerWidth = width - borderWidth * 2;
     const containerStyle = {
+      flexDirection: 'row',
+      justifyContent: 'center',
       width,
       borderWidth,
       borderColor: borderColor || color,
@@ -116,6 +121,7 @@ export default class ProgressBar extends Component {
     };
     const progressStyle = {
       backgroundColor: color,
+      justifyContent: 'center',
       height,
       width: this.state.progress.interpolate({
         inputRange: [0, 1],
@@ -131,7 +137,9 @@ export default class ProgressBar extends Component {
 
     return (
       <View style={[containerStyle, style]} {...restProps}>
-        <Animated.View style={progressStyle} />
+        <Animated.View style={progressStyle}>
+          {this.props.innerBarTitle ? <Text style={[{color: 'white', alignSelf: 'flex-end', marginRight: 5}, this.props.innerBarTitleStyle]}>{this.props.innerBarTitle}</Text> : null}
+        </Animated.View>
         {children}
       </View>
     );
