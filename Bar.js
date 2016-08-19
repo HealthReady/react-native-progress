@@ -27,6 +27,7 @@ export default class ProgressBar extends Component {
     width: PropTypes.number,
     innerBarTitle: PropTypes.string,
     innerBarTitleStyle: View.propTypes.style,
+    innerBarRadius: PropTypes.number
   };
 
   static defaultProps = {
@@ -137,7 +138,7 @@ export default class ProgressBar extends Component {
 
     return (
       <View style={[containerStyle, style]} {...restProps}>
-        <Animated.View style={progressStyle}>
+        <Animated.View style={[progressStyle, {borderRadius: this.props.innerBarRadius}]}>
           {this.props.innerBarTitle ? <Text style={[{color: 'white', alignSelf: 'flex-end', marginRight: 5}, this.props.innerBarTitleStyle]}>{this.props.innerBarTitle}</Text> : null}
         </Animated.View>
         {children}
