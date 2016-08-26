@@ -26,7 +26,7 @@ export default class ProgressBar extends Component {
     unfilledColor: PropTypes.string,
     width: PropTypes.number,
     innerBarTitle: PropTypes.string,
-    innerBarTitleStyle: View.propTypes.style,
+    innerBarTitleStyle: Text.propTypes.style,
     innerBarRadius: PropTypes.number
   };
 
